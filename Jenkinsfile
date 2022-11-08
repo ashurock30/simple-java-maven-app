@@ -10,7 +10,7 @@ pipeline {
         stage('Example') {
             steps {
                 /* CORRECT */
-                bat 'echo %EXAMPLE_KEY%'
+                sh('echo ${STATEMENT}')
             }
         }
         stage('Build') {
