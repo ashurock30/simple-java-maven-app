@@ -19,6 +19,13 @@ pipeline {
             }
         }
 
+        stage('Clean Maven Local Repo') {
+            steps {
+                sh 'echo "Deleting Maven local repo"'
+                sh 'rm -rf /opt/maven/.repository/*'
+            }
+        }
+
         stage('Build') {
             steps { 
                 withMaven(globalMavenSettingsConfig: '', jdk: 'JDK11', maven: 'Maven-3.9.5', mavenSettingsConfig: 'maven-settings', traceability: true) {
