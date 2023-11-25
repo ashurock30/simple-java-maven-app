@@ -52,6 +52,15 @@ pipeline {
 
            }
        }
+
+       stage("Quality Gate"){
+           steps {
+               script {
+                    waitForQualityGate abortPipeline: true, credentialsId: 'sonar-test'
+                }	
+            }
+
+        }
     }        
     
     post {
