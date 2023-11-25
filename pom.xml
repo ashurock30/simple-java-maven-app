@@ -6,7 +6,14 @@
   <packaging>jar</packaging>
   <version>1.0</version>
   <name>my-app</name>
-  <url>http://maven.apache.org</url>
+
+  <distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <url>http://192.168.1.106:8081/repository/maven-test/</url>
+    </repository>
+ </distributionManagement>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
