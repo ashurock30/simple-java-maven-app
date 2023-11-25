@@ -22,7 +22,7 @@ pipeline {
         stage('Clean Maven Local Repo') {
             steps {
                 sh 'echo "Deleting Maven local repo"'
-                sh 'rm -rf /opt/maven/.repository/*'
+                //sh 'rm -rf /opt/maven/.repository/*'
             }
         }
 
