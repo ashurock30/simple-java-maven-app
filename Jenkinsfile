@@ -29,7 +29,8 @@ pipeline {
         stage('Build') {
             steps { 
                 withMaven(globalMavenSettingsConfig: '', jdk: 'JDK11', maven: 'Maven-3.9.5', mavenSettingsConfig: 'maven-settings', traceability: true) {
-                    sh 'mvn clean install deploy'
+                    //sh 'mvn clean install deploy'
+                    sh 'mvn clean install'
                 }
             }
         }
