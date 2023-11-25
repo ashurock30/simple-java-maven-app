@@ -33,8 +33,27 @@ pipeline {
                 }
             }
         }
-    }
 
+        stage("Test Application") {
+           steps {
+               withMaven(globalMavenSettingsConfig: '', jdk: 'JDK11', maven: 'Maven-3.9.5', mavenSettingsConfig: 'maven-settings', traceability: true) { 
+                   sh "mvn test"
+               }
+           }
+       }
+
+       stage('Sonar Qube Scan With Project Creation') {
+           steps {
+               withSonarQubeEnv(credentialsId:'sonar-test',installationName:'SonarQube') {
+                   withMaven(globalMavenSettingsConfig: '', jdk: 'JDK11', maven: 'Maven-3.9.5', mavenSettingsConfig: 'maven-settings', traceability: true) {
+                       sh 'mvn sonar:sonar -Dsonar.projectKey=com.mycompany.app:my-app -Dsonar.projectName="Sonar-MyApp"'
+                   } 
+               }
+
+           }
+       }
+    }        
+    
     post {
         always {
             cleanWs()
